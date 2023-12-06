@@ -1,7 +1,7 @@
 const readlineSync = require("readline-sync");
 const chalk = require("chalk");
 const log = console.log;
-const gkQuiz = require("./dataBase");
+const gkQuiz = require("./database");
 
 let score = 0;
 let userName;
