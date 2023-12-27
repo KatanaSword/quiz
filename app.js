@@ -11,12 +11,13 @@ function greetings() {
   log(chalk.white.bold("--------------------🌸🌸🌸--------------------"));
   log(chalk.white.bold("Welcome to the quiz, Let's play!!"));
   log(chalk.white.bold("--------------------🌸🌸🌸--------------------"));
+  startQuiz();
 };
 greetings();
 
 function startQuiz() {
   userName = readlineSync.question(chalk.white.underline.bold("Please enter your name") + ":" + " ");
-  if(userName === "") {
+  if(!userName || !isNaN(userName)) {
     log(chalk.bgRed.bold("Invalid entry, Please enter your name"));
     startQuiz();
   } else {
@@ -26,7 +27,6 @@ function startQuiz() {
     exitFunc();
   }
 };
-startQuiz();
 
 function exitFunc() {
   const continueOrExit = readlineSync.question(chalk.white.underline.bold("Do you want to continue [y/n]") + ":" + " ");
@@ -53,7 +53,7 @@ function quiz() {
         score += 2;
       } else {
         log(chalk.bgRed.bold("Wrong Answer"));
-        const showRightAnswer = chalk.white.bold.underline("Correct answer") + ":" + " " + chalk.bgGreen.bold(currentCorrectAnswer);
+        const showRightAnswer = `${chalk.white.bold.underline("Correct answer")}: ${chalk.bgGreen.bold(currentCorrectAnswer)}`;
         log(showRightAnswer);
         score -= 1;
       };
